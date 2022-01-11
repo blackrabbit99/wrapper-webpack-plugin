@@ -1,6 +1,4 @@
 'use strict';
-
-const ConcatSource = require("webpack-sources").ConcatSource;
 const ModuleFilenameHelpers = require("webpack/lib/ModuleFilenameHelpers");
 
 class WrapperPlugin {
@@ -27,6 +25,9 @@ class WrapperPlugin {
 	}
 
 	apply(compiler) {
+		const WebpackSources = compiler.webpack.sources;
+		const ConcatSource = WebpackSources.ConcatSource;
+
 		const header = this.header;
 		const footer = this.footer;
 		const tester = {test: this.test};
